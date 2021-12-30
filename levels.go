@@ -1,6 +1,6 @@
 package logger
 
-var AllLevels []int
+var AllLevels [5]int
 
 var NoneLvl int
 var InfoLvl int
@@ -14,6 +14,12 @@ func init() {
 	WarningLvl = 800
 	ErrorLvl = 700
 	DebugLvl = 950
+
+	AllLevels[0] = NoneLvl
+	AllLevels[1] = InfoLvl
+	AllLevels[2] = WarningLvl
+	AllLevels[3] = ErrorLvl
+	AllLevels[4] = DebugLvl
 }
 
 // TODO -- Base values for every `level`

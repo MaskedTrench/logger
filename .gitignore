@@ -1,0 +1,12 @@
+# Tests 
+tests/*
+
+# Todo file for making notes 
+TODO
+
+# IDE's and editors files
+*/.vscode
+*/.idea
+
+# Build's
+./logger
