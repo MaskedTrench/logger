@@ -21,10 +21,7 @@ type file struct {
 
 type Format struct {
 	special bool
-	fileout file
 	colors  Colors
-	formula string
-	fields  map[string]string
 }
 
 type Formats struct {
@@ -43,17 +40,26 @@ func init() {
 	AllFormats.Debug.special = false
 	AllFormats.Warning.special = false
 
-	AllFormats.Info.fileout.on = false
-	AllFormats.Error.fileout.on = false
-	AllFormats.Debug.fileout.on = false
-	AllFormats.Warning.fileout.on = false
-
 	stdcolor := Colors{
 		name:       "\033[1;34m",
 		date:       "\033[2m",
 		field:      "\033[1;33m",
 		content:    "",
-		helloworld: "---=\033[1;32m",
+		helloworld: "\033[1;32m",
+	}
+
+	warning := Colors{
+		name:    "\033[1;36m",
+		date:    "\033[2m",
+		field:   "\033[1;33m",
+		content: "\033[3;33m",
+	}
+
+	err := Colors{
+		name:    "\033[1;7;31m",
+		date:    "\033[33m",
+		field:   "\033[1;7;34m",
+		content: "\033[1;31m",
 	}
 
 	/*
@@ -69,7 +75,7 @@ func init() {
 	*/
 
 	AllFormats.Info.colors = stdcolor
-	AllFormats.Error.colors = stdcolor
+	AllFormats.Error.colors = err
 	AllFormats.Debug.colors = stdcolor
-	AllFormats.Warning.colors = stdcolor
+	AllFormats.Warning.colors = warning
 }

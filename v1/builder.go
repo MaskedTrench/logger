@@ -20,6 +20,7 @@ func BuildLogger(lvl int) (l Logger, err error) {
 		return l, err
 	}
 
+	l.Fields = make(map[string]string)
 	l.Level = lvl
 	l.Format = AllFormats
 
@@ -27,6 +28,11 @@ func BuildLogger(lvl int) (l Logger, err error) {
 }
 
 func (l *Logger) EnableFiles(flag bool) {
+	if flag == false {
+		l.File.File = nil
+		l.File.AllowParralels = false
+	}
+
 	dirname := "log"
 	latsfilename := "log"
 
@@ -43,10 +49,10 @@ func (l *Logger) EnableFiles(flag bool) {
 		file, err := os.Open(fname)
 		if err != nil {
 			os.Create(fname)
+			file, err = os.OpenFile(fname, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 			l.File.File = file
 			l.File.AllowParralels = true
 			break
 		}
 	}
-	l.Inform("Files enabled!")
 }
