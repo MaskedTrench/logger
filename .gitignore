@@ -1,5 +1,6 @@
 # Tests 
-tests/*
+vendor/*
+log/*
 
 # Todo file for making notes 
 TODO

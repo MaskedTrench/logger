@@ -20,9 +20,8 @@ func BuildLogger(lvl int) (l Logger, err error) {
 		return l, err
 	}
 
-	//l.to_file = false
-	//l.path_to_file = ""
-	//l.level = lvl
+	l.Level = lvl
+	l.Format = AllFormats
 
 	return l, nil
 }
@@ -49,4 +48,5 @@ func (l *Logger) EnableFiles(flag bool) {
 			break
 		}
 	}
+	l.Inform("Files enabled!")
 }

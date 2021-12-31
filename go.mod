@@ -1,3 +1,3 @@
-module logger
+module main
 
-go 1.15
+go 1.17
