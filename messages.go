@@ -5,8 +5,6 @@ import (
 	"time"
 )
 
-// TODO -- Implementation of all level message dispathechers
-
 func filed_format(fields map[string]string, format Format) ([]string, int) {
 	var output []string
 	if len(fields) == 0 {
@@ -48,29 +46,42 @@ func fl_print(name string, msg string, fi map[string]string, fl *os.File) {
 	}
 }
 
-func (l *Logger) Inform(msg string) {
+func (l *Logger) Inform(msg string) int {
+	if l.Level < InfoLvl && l.Level != NoneLvl {
+		return -1
+	}
+
 	fields, _ := filed_format(l.Fields, l.Format.Info)
 
 	ctn_print("Info", msg, fields, l.Format.Info)
 	if l.File.File != nil && l.File.AllowParralels == true {
 		fl_print("Info", msg, l.Fields, l.File.File)
 	}
+	return 0
 }
 
-func (l *Logger) Warn(msg string) {
+func (l *Logger) Warn(msg string) int {
+	if l.Level < WarningLvl && l.Level != NoneLvl {
+		return -1
+	}
 	fields, _ := filed_format(l.Fields, l.Format.Warning)
 
 	ctn_print("Warn", msg, fields, l.Format.Warning)
 	if l.File.File != nil && l.File.AllowParralels == true {
 		fl_print("Warn", msg, l.Fields, l.File.File)
 	}
+	return 0
 }
 
-func (l *Logger) Error(msg string) {
+func (l *Logger) Error(msg string) int {
+	if l.Level < ErrorLvl && l.Level != NoneLvl {
+		return -1
+	}
 	fields, _ := filed_format(l.Fields, l.Format.Error)
 
 	ctn_print("Error", msg, fields, l.Format.Error)
 	if l.File.File != nil && l.File.AllowParralels == true {
 		fl_print("Error", msg, l.Fields, l.File.File)
 	}
+	return 0
 }

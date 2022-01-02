@@ -22,7 +22,5 @@ func init() {
 	AllLevels[4] = DebugLvl
 }
 
-// TODO -- Base values for every `level`
-// TODO -- Conversetion from `Level` to `int`
 // TODO -- Make something for easy and soft changes between levels
 // TODO -- Do smth for int instacing of levels, not running `log.Info`

@@ -1,3 +1,2 @@
-module main
-
-go 1.17
+module github.com/MaskedTrench/logger
+go 1.15
